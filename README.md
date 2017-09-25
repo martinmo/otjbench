@@ -30,3 +30,8 @@ The benchmarks are executed as follows:
     ./run_benchmarks_otj.sh
 
 The latter one runs the benchmarks with the OT/J runtime enabled.
+
+## License
+
+Except for the bundled `*.jar` files, the code in this repository is licensed under a 3-clause BSD
+license (see [LICENSE.txt](LICENSE.txt) for details).
