@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+  <name>otjbench</name>
+  <projects/>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.objectteams.otdt.builder.OTJBuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.objectteams.otdt.OTJavaNature</nature>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>
