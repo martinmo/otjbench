@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="otj-bench" default="compile" basedir=".">
+  <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
+  <property name="ecotj.jar" value="ecotj-R-2.5.3-201703071315.jar" />
+
+  <property name="src.dir" value="src/main/otj" />
+  <property name="build.dir" value="build" />
+  <property name="bin.dir" value="${build.dir}/bin" />
+  <property name="lib.dir" value="lib" />
+
+  <property name="mvn.groupId" value="net.mmorgenstern" />
+  <property name="mvn.artifactId" value="otjbench" />
+  <property name="mvn.version" value="1.0.0-SNAPSHOT" />
+
+  <property name="fat.jar" value="${build.dir}/${mvn.artifactId}-${mvn.version}.jar" />
+
+  <target name="compile" depends="clean">
+    <mkdir dir="${bin.dir}" />
+    <javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false"
+           source="1.8" target="1.8">
+      <compilerclasspath path="${ecotj.jar}" />
+      <classpath>
+        <fileset dir="${lib.dir}">
+          <include name="*.jar" />
+        </fileset>
+      </classpath>
+      <compilerarg value="-ot.weaving:otdre" />
+      <compilerarg value="-proc:none" />
+    </javac>
+  </target>
+
+  <!-- Produce a fat jar so we only need to specify bootclasspath and agent -->
+  <target name="jar" depends="compile">
+    <jar jarfile="${fat.jar}.tmp" basedir="${bin.dir}">
+      <zipgroupfileset dir="${lib.dir}" />
+    </jar>
+    <jar jarfile="${fat.jar}" duplicate="fail">
+      <zipfileset src="${fat.jar}.tmp" excludes="META-INF/**/*" />	
+    </jar>
+    <delete file="${fat.jar}.tmp" />
+  </target>
+
+  <!-- Install fat jar into local Maven repository for reference in the JMH benchmark -->
+  <target name="install" depends="jar">
+    <exec executable="mvn">
+      <arg value="install:install-file" />
+      <arg value="-Dfile=${fat.jar}" />
+      <arg value="-DgroupId=${mvn.groupId}" />
+      <arg value="-DartifactId=${mvn.artifactId}" />
+      <arg value="-Dversion=${mvn.version}" />
+      <arg value="-Dpackaging=jar" />
+    </exec>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build.dir}" />
+  </target>
+</project>
