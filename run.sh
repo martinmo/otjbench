@@ -1,2 +1,2 @@
 #!/bin/sh
-exec java -cp "bin:lib/*" -Xbootclasspath/a:otre_min.jar -javaagent:otredyn_agent.jar "$@"
+exec java -cp "build/bin:lib/*" -Xbootclasspath/a:otre_min.jar -javaagent:otredyn_agent.jar "$@"
