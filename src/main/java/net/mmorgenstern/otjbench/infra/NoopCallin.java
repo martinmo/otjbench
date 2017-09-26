@@ -39,6 +39,11 @@ public class NoopCallin {
 	}
 
 	@Benchmark
+	public void baseline() {
+		// intentionally left empty
+	}
+
+	@Benchmark
 	public String callinTest() {
 		return p.sayHello();
 	}
