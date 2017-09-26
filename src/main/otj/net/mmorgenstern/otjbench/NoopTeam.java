@@ -10,5 +10,10 @@ public team class NoopTeam {
 			return base.sayHello();
 		}
 		sayHello <- replace sayHello;
+
+		callin String sayHelloTo(Person otherPerson) {
+			return base.sayHelloTo(otherPerson);
+		}
+		sayHelloTo <- replace sayHelloTo;
 	}
 }

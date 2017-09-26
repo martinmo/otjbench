@@ -10,4 +10,8 @@ public class Person {
 	public String sayHello() {
 		return "Hi, I'm " + name + "!";
 	}
+
+	public String sayHelloTo(Person otherPerson) {
+		return "Hi," + otherPerson.name + ", I'm " + name + "!";
+	}
 }

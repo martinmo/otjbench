@@ -24,7 +24,7 @@ import net.mmorgenstern.otjbench.Person;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
 public class NoopCallin {
-	private Person p;
+	private Person p1, p2;
 	private NoopTeam myTeam;
 
 	@Setup(Level.Trial)
@@ -35,7 +35,8 @@ public class NoopCallin {
 
 	@Setup(Level.Iteration)
 	public void setup() {
-		p = new Person("Martin");
+		p1 = new Person("Martin");
+		p2 = new Person("Max");
 	}
 
 	@Benchmark
@@ -45,6 +46,11 @@ public class NoopCallin {
 
 	@Benchmark
 	public String callinTest() {
-		return p.sayHello();
+		return p1.sayHello();
+	}
+
+	@Benchmark
+	public String callinWithArgsTest() {
+		return p1.sayHelloTo(p2);
 	}
 }
