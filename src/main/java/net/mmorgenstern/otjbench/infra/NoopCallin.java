@@ -14,8 +14,8 @@ import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 
-import net.mmorgenstern.otjbench.NoopTeam;
-import net.mmorgenstern.otjbench.Person;
+import net.mmorgenstern.otjbench.sample.NoopTeam;
+import net.mmorgenstern.otjbench.sample.Person;
 
 @Fork(2)
 @Warmup(iterations = 10)

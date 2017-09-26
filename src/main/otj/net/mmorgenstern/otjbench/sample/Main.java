@@ -1,4 +1,4 @@
-package net.mmorgenstern.otjbench;
+package net.mmorgenstern.otjbench.sample;
 
 public class Main {
 	public static void main(String[] args) {
