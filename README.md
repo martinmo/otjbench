@@ -20,9 +20,9 @@ not be executed from inside the IDE.
 
 In order to build the "payload" (OT/J and Ant) and the benchmark (JMH and Maven), just use:
 
-    ./build.sh
+    make
 
-which calls Ant and Maven in sequence.
+which calls Ant and Maven in sequence. Use `make clean` to tidy up everything.
 
 The benchmarks are executed as follows:
 
