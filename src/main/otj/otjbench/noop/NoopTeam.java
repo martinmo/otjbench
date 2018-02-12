@@ -5,7 +5,7 @@ package otjbench.noop;
  *
  */
 public team class NoopTeam {
-	public class AdvancedPerson playedBy Person {
+	public class NoopRole playedBy Person {
 		callin String sayHello() {
 			return base.sayHello();
 		}
