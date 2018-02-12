@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="otj-bench" default="compile" basedir=".">
   <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
-  <property name="ecotj.jar" value="ecotj-R-2.5.3-201703071315.jar" />
+  <property name="ecotj.jar" value="libs/ant/ecotj-R-2.5.3-201703071315.jar" />
 
   <property name="src.dir" value="src/main/otj" />
   <property name="build.dir" value="build" />
   <property name="bin.dir" value="${build.dir}/bin" />
-  <property name="lib.dir" value="lib" />
+  <property name="lib.dir" value="libs/compile" />
 
   <property name="mvn.groupId" value="net.mmorgenstern" />
   <property name="mvn.artifactId" value="otjbench" />
