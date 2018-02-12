@@ -1,4 +1,4 @@
-package net.mmorgenstern.otjbench.infra;
+package otjbench.jmh;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,8 +14,8 @@ import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 
-import net.mmorgenstern.otjbench.sample.NoopTeam;
-import net.mmorgenstern.otjbench.sample.Person;
+import otjbench.noop.NoopTeam;
+import otjbench.noop.Person;
 
 @Fork(2)
 @Warmup(iterations = 10)
@@ -23,7 +23,7 @@ import net.mmorgenstern.otjbench.sample.Person;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
-public class NoopCallin {
+public class NoopCallinBenchmark {
 	private Person p1, p2;
 	private NoopTeam myTeam;
 
@@ -45,12 +45,12 @@ public class NoopCallin {
 	}
 
 	@Benchmark
-	public String callinTest() {
+	public String callin_noargs() {
 		return p1.sayHello();
 	}
 
 	@Benchmark
-	public String callinWithArgsTest() {
+	public String callin_withargs() {
 		return p1.sayHelloTo(p2);
 	}
 }

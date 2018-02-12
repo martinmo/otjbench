@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="otj-bench" default="compile" basedir=".">
+<project name="otjbench" default="compile" basedir=".">
   <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
   <property name="ecotj.jar" value="libs/ant/ecotj-R-2.5.3-201703071315.jar" />
 
@@ -8,9 +8,9 @@
   <property name="bin.dir" value="${build.dir}/bin" />
   <property name="lib.dir" value="libs/compile" />
 
-  <property name="mvn.groupId" value="net.mmorgenstern" />
+  <property name="mvn.groupId" value="com.github.martinmo.otjbench" />
   <property name="mvn.artifactId" value="otjbench" />
-  <property name="mvn.version" value="1.0.0-SNAPSHOT" />
+  <property name="mvn.version" value="1.0-SNAPSHOT" />
 
   <property name="fat.jar" value="${build.dir}/${mvn.artifactId}-${mvn.version}.jar" />
 

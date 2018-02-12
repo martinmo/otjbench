@@ -1,4 +1,4 @@
-package net.mmorgenstern.otjbench.sample;
+package otjbench.noop;
 
 public class Person {
 	private final String name;

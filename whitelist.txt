@@ -1,1 +1,1 @@
-net.mmorgenstern.otjbench.sample
+otjbench.noop

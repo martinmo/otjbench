@@ -2,13 +2,6 @@
 
 This is a set of microbenchmarks for OT/J using the JMH benchmarking harness.
 
-## Todo list
-
-- [x] Callin overhead
-- [ ] Callout overhead
-- [ ] Load-time weaving overhead
-- ...
-
 
 ## Build and run
 
