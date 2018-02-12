@@ -1,5 +1,6 @@
 package otjbench.jmh;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -15,7 +16,7 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 
 import otjbench.noop.NoopTeam;
-import otjbench.noop.Person;
+import otjbench.noop.BaseType;
 
 @Fork(2)
 @Warmup(iterations = 10)
@@ -24,33 +25,41 @@ import otjbench.noop.Person;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
 public class NoopCallinBenchmark {
-	private Person p1, p2;
-	private NoopTeam myTeam;
+    private int x, y;
+    private BaseType b;
+    private NoopTeam myTeam;
 
-	@Setup(Level.Trial)
-	public void setupTeam() {
-		myTeam = new NoopTeam();
-		myTeam.activate();
-	}
+    @Setup(Level.Trial)
+    public void setupTeam() {
+        myTeam = new NoopTeam();
+        myTeam.activate();
+    }
 
-	@Setup(Level.Iteration)
-	public void setup() {
-		p1 = new Person("Martin");
-		p2 = new Person("Max");
-	}
+    @Setup(Level.Iteration)
+    public void setup() {
+        Random random = new Random();
+        b = new BaseType();
+        x = random.nextInt();
+        y = random.nextInt();
+    }
 
-	@Benchmark
-	public void baseline() {
-		// intentionally left empty
-	}
+    @Benchmark
+    public void baseline() {
+        // intentionally left empty
+    }
 
-	@Benchmark
-	public String callin_noargs() {
-		return p1.sayHello();
-	}
+    @Benchmark
+    public Object callin_noargs() {
+        return b.noArgs();
+    }
 
-	@Benchmark
-	public String callin_withargs() {
-		return p1.sayHelloTo(p2);
-	}
+    @Benchmark
+    public Object callin_withargs() {
+        return b.referenceArgAndReturn(b);
+    }
+
+    @Benchmark
+    public int callin_primitiveargs() {
+        return b.primitiveArgsAndReturn(x, y);
+    }
 }

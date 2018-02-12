@@ -5,15 +5,22 @@ package otjbench.noop;
  *
  */
 public team class NoopTeam {
-	public class NoopRole playedBy Person {
-		callin String sayHello() {
-			return base.sayHello();
-		}
-		sayHello <- replace sayHello;
+    public class NoopRole playedBy BaseType {
+        callin Object noArgs() {
+            return base.noArgs();
+        }
 
-		callin String sayHelloTo(Person otherPerson) {
-			return base.sayHelloTo(otherPerson);
-		}
-		sayHelloTo <- replace sayHelloTo;
-	}
+        callin Object referenceArgAndReturn(Object o) {
+            return base.referenceArgAndReturn(o);
+        }
+
+        // arguments and return value will probably be boxed
+        callin int primitiveArgsAndReturn(int x, int y) {
+            return base.primitiveArgsAndReturn(x, y);
+        }
+
+        noArgs <- replace noArgs;
+        referenceArgAndReturn <- replace referenceArgAndReturn;
+        primitiveArgsAndReturn <- replace primitiveArgsAndReturn;
+    }
 }
