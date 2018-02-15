@@ -48,9 +48,8 @@ public class BankBenchmark {
 		for (Account from : bank.getCheckingAccounts()) {
 			float amount = from.getBalance() / N;
 			for (Account to : bank.getSavingAccounts()) {
-				Transaction.Source source = new Transaction.Source(from);
-				Transaction.Target target = new Transaction.Target(to);
-				Transaction.execute(source, target, amount);
+				Transaction transaction = new Transaction(new Transaction.Source(from), new Transaction.Target(to));
+				transaction.execute(amount);
 			}
 		}
 		return true;

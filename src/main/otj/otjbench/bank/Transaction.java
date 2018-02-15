@@ -25,7 +25,15 @@ public class Transaction {
 		}
 	}
 
-	public static void execute(Source source, Target target, float amount) {
+	private final Source source;
+	private final Target target;
+
+	public Transaction(Source source, Target target) {
+		this.source = source;
+		this.target = target;
+	}
+
+	public void execute(final float amount) {
 		source.withdraw(amount);
 		target.deposit(amount);
 	}
