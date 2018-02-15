@@ -1,15 +1,44 @@
 package otjbench.jmh;
 
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Level;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+
 import otjbench.bank.Account;
 import otjbench.bank.Bank;
 import otjbench.bank.Person;
 import otjbench.bank.Transaction;
 
+@BenchmarkMode(Mode.AverageTime)
+@State(Scope.Benchmark)
 public class BankBenchmark {
+	@Param("1500")
+	int innerIterations;
 
-	private Bank bank;
+	Bank bank;
 
-	public boolean innerBenchmarkLoop(final int innerIterations) {
+	@Setup(Level.Iteration)
+	public void setup() {
+		bank = new Bank();
+		bank.activate();
+
+		for (int i = 0; i < innerIterations; ++i) {
+			Person p = new Person();
+			bank.addCustomer(p);
+			Account sa = new Account(1000.0f);
+			Account ca = new Account(1000.0f);
+			bank.addSavingsAccount(p, sa);
+			bank.addCheckingsAccount(p, ca);
+		}
+	}
+
+	@Benchmark
+	public boolean innerBenchmarkLoop() {
 		bank.activate();
 		for (Account from : bank.getCheckingAccounts()) {
 			float amount = from.getBalance() / innerIterations;
@@ -23,19 +52,4 @@ public class BankBenchmark {
 		return true;
 	}
 
-	public boolean setUp(final int innerIterations) {
-		bank = new Bank();
-		bank.activate();
-
-		for (int i = 0; i < innerIterations; ++i) {
-			Person p = new Person();
-			bank.addCustomer(p);
-
-			Account sa = new Account(1000.0f);
-			Account ca = new Account(1000.0f);
-			bank.addSavingsAccount(p, sa);
-			bank.addCheckingsAccount(p, ca);
-		}
-		return true;
-	}
 }
