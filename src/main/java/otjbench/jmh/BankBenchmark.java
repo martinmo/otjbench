@@ -19,7 +19,7 @@ import otjbench.bank.Transaction;
 @State(Scope.Benchmark)
 public class BankBenchmark {
 	@Param("1500")
-	int innerIterations;
+	int N;
 
 	Bank bank;
 
@@ -28,7 +28,7 @@ public class BankBenchmark {
 		bank = new Bank();
 		bank.activate();
 
-		for (int i = 0; i < innerIterations; ++i) {
+		for (int i = 0; i < N; ++i) {
 			Person p = new Person();
 			bank.addCustomer(p);
 			Account sa = new Account(1000.0f);
@@ -44,9 +44,9 @@ public class BankBenchmark {
 	}
 
 	@Benchmark
-	public boolean innerBenchmarkLoop() {
+	public boolean process_transactions_NxN() {
 		for (Account from : bank.getCheckingAccounts()) {
-			float amount = from.getBalance() / innerIterations;
+			float amount = from.getBalance() / N;
 			for (Account to : bank.getSavingAccounts()) {
 				Transaction.Source source = new Transaction.Source(from);
 				Transaction.Target target = new Transaction.Target(to);
