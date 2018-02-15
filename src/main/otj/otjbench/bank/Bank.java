@@ -1,7 +1,7 @@
 package otjbench.bank;
 
 import java.util.List;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public team class Bank {
 	private List<Customer> customers;
@@ -15,7 +15,7 @@ public team class Bank {
 
 		public void addAccount(Account account) {
 			if (accounts == null) {
-				accounts = new LinkedList<>();
+				accounts = new ArrayList<>();
 			}
 			accounts.add(account);
 		}
@@ -31,7 +31,7 @@ public team class Bank {
 
 	public void addCustomer(Person as Customer customer) {
 		if (customers == null) {
-			customers = new LinkedList<>();
+			customers = new ArrayList<>();
 		}
 		customers.add(customer);
 	}
@@ -39,7 +39,7 @@ public team class Bank {
 	public void addCheckingsAccount(Person as Customer c, Account as CheckingsAccount a) {
 		c.addAccount(a);
 		if (checkingAccounts == null) {
-			checkingAccounts = new LinkedList<>();
+			checkingAccounts = new ArrayList<>();
 		}
 		checkingAccounts.add(a);
 	}
@@ -47,7 +47,7 @@ public team class Bank {
 	public void addSavingsAccount(Person as Customer c, Account as SavingsAccount a) {
 		c.addAccount(a);
 		if (savingAccounts == null) {
-			savingAccounts = new LinkedList<>();
+			savingAccounts = new ArrayList<>();
 		}
 		savingAccounts.add(a);
 	}
