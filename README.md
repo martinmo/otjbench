@@ -5,6 +5,9 @@ This is a set of microbenchmarks for OT/J using the JMH benchmarking harness.
 
 ## Build and run
 
+First of all, the build *only works with JDK 8*, but you can run the resulting benchmark with a
+recent JDK 9 JVM.
+
 Disclaimer: This project uses an ugly hybrid Ant/Maven build, because at the moment, there seems to
 be no reliable way to build OT/J projects with Maven. Therefore, some JARs from the official OT/J
 distribution (licensed under the Eclipse Public License v1.0) are included. For convenience, it also
@@ -15,7 +18,8 @@ In order to build the "payload" (OT/J and Ant) and the benchmark (JMH and Maven)
 
     make
 
-which calls Ant and Maven in sequence. Use `make clean` to tidy up everything.
+which calls Ant and Maven in sequence. Use `make clean` to tidy up everything (this is sometimes
+necessary to get a clean `benchmark.jar`).
 
 The benchmarks are executed as follows:
 
