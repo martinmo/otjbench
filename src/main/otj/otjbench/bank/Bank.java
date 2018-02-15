@@ -73,11 +73,15 @@ public team class Bank {
 
 		private static final float FEE = 0.1f;
 
-		callin void withFee(float a) {
-			// System.out.println("Calculating fee...");
-			base.withFee(a + a * FEE);
+		private float transactionFee(float a) {
+			return a * FEE;
 		}
 
-		void withFee(float a) <- replace decrease(float a);
+		callin void withTransactionFee(float a) {
+			// System.out.println("Calculating fee...");
+			base.withTransactionFee(a - transactionFee(a));
+		}
+
+		void withTransactionFee(float a) <- replace increase(float a);
 	}
 }
