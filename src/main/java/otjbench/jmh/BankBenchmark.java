@@ -1,9 +1,7 @@
 package otjbench.jmh;
 
 import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Level;
-import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
@@ -15,9 +13,8 @@ import otjbench.bank.Bank;
 import otjbench.bank.Person;
 import otjbench.bank.Transaction;
 
-@BenchmarkMode(Mode.AverageTime)
 @State(Scope.Benchmark)
-public class BankBenchmark {
+public class BankBenchmark extends BenchmarkDefaults {
 	@Param("1500")
 	int N;
 
