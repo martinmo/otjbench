@@ -15,6 +15,13 @@
   <property name="fat.jar" value="${build.dir}/${mvn.artifactId}-${mvn.version}.jar" />
 
   <target name="compile" depends="clean">
+    <fail message="Unsupported Java compiler version: ${ant.java.version} (need 1.8)">
+      <condition>
+        <not>
+          <equals arg1="${ant.java.version}" arg2="1.8"/>
+        </not>
+      </condition>
+    </fail>
     <mkdir dir="${bin.dir}" />
     <javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false"
            source="1.8" target="1.8">

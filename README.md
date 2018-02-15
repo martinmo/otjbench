@@ -18,8 +18,7 @@ In order to build the "payload" (OT/J and Ant) and the benchmark (JMH and Maven)
 
     make
 
-which calls Ant and Maven in sequence. Use `make clean` to tidy up everything (this is sometimes
-necessary to get a clean `benchmark.jar`).
+which calls Ant and Maven in sequence.
 
 The benchmarks are executed as follows:
 

@@ -1,6 +1,6 @@
-all:
+package:
 	ant install
-	mvn package
+	mvn clean package
 
 clean:
 	ant clean
