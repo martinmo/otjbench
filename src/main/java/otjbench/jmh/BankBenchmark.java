@@ -8,6 +8,7 @@ import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.TearDown;
 
 import otjbench.bank.Account;
 import otjbench.bank.Bank;
@@ -37,9 +38,13 @@ public class BankBenchmark {
 		}
 	}
 
+	@TearDown(Level.Iteration)
+	public void teardown() {
+		bank.deactivate();
+	}
+
 	@Benchmark
 	public boolean innerBenchmarkLoop() {
-		bank.activate();
 		for (Account from : bank.getCheckingAccounts()) {
 			float amount = from.getBalance() / innerIterations;
 			for (Account to : bank.getSavingAccounts()) {
@@ -48,7 +53,6 @@ public class BankBenchmark {
 				Transaction.execute(source, target, amount);
 			}
 		}
-		bank.deactivate();
 		return true;
 	}
 
