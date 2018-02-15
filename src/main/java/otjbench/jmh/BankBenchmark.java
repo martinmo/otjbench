@@ -2,41 +2,21 @@ package otjbench.jmh;
 
 import otjbench.bank.Account;
 import otjbench.bank.Bank;
-import otjbench.bank.CallinTransaction;
-import otjbench.bank.CalloutTransaction;
 import otjbench.bank.Person;
+import otjbench.bank.Transaction;
 
 public class BankBenchmark {
 
 	private Bank bank;
-	private String optionalArgument;
 
 	public boolean innerBenchmarkLoop(final int innerIterations) {
 		bank.activate();
 		for (Account from : bank.getCheckingAccounts()) {
 			float amount = from.getBalance() / innerIterations;
 			for (Account to : bank.getSavingAccounts()) {
-				if(optionalArgument.equals("CALLIN")) {
-					CallinTransaction transaction = new CallinTransaction();
-					transaction.activate();
-					try {
-						transaction.execute(from, to, amount);
-					} catch (RuntimeException e) {
-						// do nothing
-					} finally {
-						transaction.deactivate();
-					}
-				} else {
-					CalloutTransaction transaction = new CalloutTransaction();
-					transaction.activate();
-					try {
-						transaction.execute(from, to, amount);
-					} catch (RuntimeException e) {
-						// do nothing
-					} finally {
-						transaction.deactivate();
-					}
-				}
+				Transaction.Source source = new Transaction.Source(from);
+				Transaction.Target target = new Transaction.Target(to);
+				Transaction.execute(source, target, amount);
 			}
 		}
 		bank.deactivate();
