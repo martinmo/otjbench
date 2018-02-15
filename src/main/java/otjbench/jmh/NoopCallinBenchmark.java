@@ -9,6 +9,7 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.TearDown;
 
 import otjbench.noop.BaseType;
 import otjbench.noop.NoopTeam;
@@ -32,6 +33,11 @@ public class NoopCallinBenchmark extends BenchmarkDefaults {
         b = new BaseType();
         x = random.nextInt();
         y = random.nextInt();
+    }
+
+    @TearDown(Level.Trial)
+    public void teardown() {
+        myTeam.deactivate();
     }
 
     @Benchmark
