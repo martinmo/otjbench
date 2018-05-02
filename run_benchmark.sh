@@ -4,8 +4,8 @@ JVM_ARGS="$JVM_ARGS -Duser.language=en -Duser.country=US"
 JVM_ARGS="$JVM_ARGS -Xbootclasspath/a:libs/runtime/otre_min.jar"
 JVM_ARGS="$JVM_ARGS -javaagent:libs/runtime/otredyn_agent.jar"
 
-if java -version 2>&1 | grep -qE '^(openjdk|java) version "9\..*"$'; then
-    # for JDK 9
+if ! java -version 2>&1 | grep -qE '^(openjdk|java) version "1\.8\..*"$'; then
+    # for all JDKs != 1.8
     JVM_ARGS="$JVM_ARGS --add-opens=java.base/java.io=ALL-UNNAMED"
 fi
 
