@@ -16,7 +16,7 @@ import otjbench.noop.NoopTeam;
 
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
-public class NoopCallinBenchmark extends BenchmarkDefaults {
+public class NoopBenchmark extends BenchmarkDefaults {
     private int x, y;
     private BaseType b;
     private NoopTeam myTeam;
@@ -46,17 +46,17 @@ public class NoopCallinBenchmark extends BenchmarkDefaults {
     }
 
     @Benchmark
-    public Object callin_noargs() {
+    public Object basecall_noargs() {
         return b.noArgs();
     }
 
     @Benchmark
-    public Object callin_withargs() {
+    public Object basecall_withargs() {
         return b.referenceArgAndReturn(b);
     }
 
     @Benchmark
-    public int callin_primitiveargs() {
+    public int basecall_primitiveargs() {
         return b.primitiveArgsAndReturn(x, y);
     }
 }
