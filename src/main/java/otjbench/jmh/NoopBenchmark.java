@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
@@ -17,27 +18,34 @@ import otjbench.noop.NoopTeam;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
 public class NoopBenchmark extends BenchmarkDefaults {
-    private int x, y;
-    private BaseType b;
-    private NoopTeam myTeam;
+    @Param({ "1", "2", "3" })
+    int numRoles;
 
-    @Setup(Level.Trial)
-    public void setupTeam() {
-        myTeam = new NoopTeam();
-        myTeam.activate();
-    }
+    int x, y;
+    BaseType b;
+    NoopTeam[] myTeams;
 
     @Setup(Level.Iteration)
     public void setup() {
-        Random random = new Random();
         b = new BaseType();
+        myTeams = new NoopTeam[numRoles];
+        for (int i = 0; i < numRoles; i++) {
+            myTeams[i] = new NoopTeam();
+            myTeams[i].activate();
+        }
+        Random random = new Random();
         x = random.nextInt();
         y = random.nextInt();
     }
 
-    @TearDown(Level.Trial)
+    @TearDown(Level.Iteration)
     public void teardown() {
-        myTeam.deactivate();
+        for (NoopTeam team : myTeams) {
+            team.deactivate();
+        }
+        // useful when JMH's "-gc" flag is used:
+        b = null;
+        myTeams = null;
     }
 
     @Benchmark
