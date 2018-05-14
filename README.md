@@ -6,7 +6,7 @@ This is a set of microbenchmarks for OT/J using the JMH benchmarking harness.
 ## Build and run
 
 First of all, the build *only works with JDK 8*, but you can run the resulting benchmark with a
-recent JDK 9 JVM.
+a more recent JDK.
 
 Disclaimer: This project uses an ugly hybrid Ant/Maven build, because at the moment, there seems to
 be no reliable way to build OT/J projects with Maven. Therefore, some JARs from the official OT/J
