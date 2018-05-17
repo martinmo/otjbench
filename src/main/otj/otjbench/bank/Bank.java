@@ -4,19 +4,16 @@ import java.util.List;
 import java.util.ArrayList;
 
 public team class Bank {
-	private List<Customer> customers;
-	private List<Account> checkingAccounts;
-	private List<Account> savingAccounts;
+	private final List<Customer> customers = new ArrayList<>();
+	private final List<Account> checkingAccounts = new ArrayList<>();
+	private final List<Account> savingAccounts = new ArrayList<>();
 
-	precedence SavingsAccount,CheckingsAccount;
+	precedence SavingsAccount, CheckingsAccount;
 
 	public class Customer playedBy Person {
-		private List<Account> accounts;
+		private final List<Account> accounts = new ArrayList<>();
 
 		public void addAccount(Account account) {
-			if (accounts == null) {
-				accounts = new ArrayList<>();
-			}
 			accounts.add(account);
 		}
 	}
@@ -30,30 +27,20 @@ public team class Bank {
 	}
 
 	public void addCustomer(Person as Customer customer) {
-		if (customers == null) {
-			customers = new ArrayList<>();
-		}
 		customers.add(customer);
 	}
 
 	public void addCheckingsAccount(Person as Customer c, Account as CheckingsAccount a) {
 		c.addAccount(a);
-		if (checkingAccounts == null) {
-			checkingAccounts = new ArrayList<>();
-		}
 		checkingAccounts.add(a);
 	}
 
 	public void addSavingsAccount(Person as Customer c, Account as SavingsAccount a) {
 		c.addAccount(a);
-		if (savingAccounts == null) {
-			savingAccounts = new ArrayList<>();
-		}
 		savingAccounts.add(a);
 	}
 
 	public class CheckingsAccount playedBy Account {
-
 		private static final float LIMIT = 100.0f;
 
 		callin void limited(float a) {
@@ -66,11 +53,9 @@ public team class Bank {
 		}
 
 		void limited(float a) <- replace decrease(float a);
-
 	}
 
 	public class SavingsAccount playedBy Account {
-
 		private static final float FEE = 0.1f;
 
 		private float transactionFee(float a) {

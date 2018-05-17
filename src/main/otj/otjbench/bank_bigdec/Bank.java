@@ -5,19 +5,16 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public team class Bank {
-	private List<Customer> customers;
-	private List<Account> checkingAccounts;
-	private List<Account> savingAccounts;
+	private final List<Customer> customers = new ArrayList<>();
+	private final List<Account> checkingAccounts = new ArrayList<>();
+	private final List<Account> savingAccounts = new ArrayList<>();
 
-	precedence SavingsAccount,CheckingsAccount;
+	precedence SavingsAccount, CheckingsAccount;
 
 	public class Customer playedBy Person {
-		private List<Account> accounts;
+		private final List<Account> accounts = new ArrayList<>();
 
 		public void addAccount(Account account) {
-			if (accounts == null) {
-				accounts = new ArrayList<>();
-			}
 			accounts.add(account);
 		}
 	}
@@ -31,25 +28,16 @@ public team class Bank {
 	}
 
 	public void addCustomer(Person as Customer customer) {
-		if (customers == null) {
-			customers = new ArrayList<>();
-		}
 		customers.add(customer);
 	}
 
 	public void addCheckingsAccount(Person as Customer c, Account as CheckingsAccount a) {
 		c.addAccount(a);
-		if (checkingAccounts == null) {
-			checkingAccounts = new ArrayList<>();
-		}
 		checkingAccounts.add(a);
 	}
 
 	public void addSavingsAccount(Person as Customer c, Account as SavingsAccount a) {
 		c.addAccount(a);
-		if (savingAccounts == null) {
-			savingAccounts = new ArrayList<>();
-		}
 		savingAccounts.add(a);
 	}
 
@@ -66,14 +54,11 @@ public team class Bank {
 		}
 
 		void limited(BigDecimal a) <- replace decrease(BigDecimal a);
-
 	}
 
 	private static final BigDecimal FEE = new BigDecimal("0.1");
 
 	public class SavingsAccount playedBy Account {
-
-
 		private BigDecimal transactionFee(BigDecimal a) {
 			return a.multiply(FEE);
 		}
