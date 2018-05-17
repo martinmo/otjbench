@@ -49,11 +49,6 @@ public class NoopBenchmark extends BenchmarkDefaults {
     }
 
     @Benchmark
-    public void baseline() {
-        // intentionally left empty
-    }
-
-    @Benchmark
     public Object basecall_noargs() {
         return b.noArgs();
     }

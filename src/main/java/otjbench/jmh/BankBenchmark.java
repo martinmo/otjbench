@@ -16,11 +16,11 @@ import otjbench.bank.Bank;
 import otjbench.bank.Person;
 import otjbench.bank.Transaction;
 
-@Fork(warmups = 1)
+@Fork(warmups = 1, value = 15)
 @BenchmarkMode(Mode.SingleShotTime)
 @State(Scope.Benchmark)
 public class BankBenchmark {
-	@Param("1500")
+	@Param({"250", "500", "1000", "2000", "4000"})
 	int N;
 
 	Bank bank;

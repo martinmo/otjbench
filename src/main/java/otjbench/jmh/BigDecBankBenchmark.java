@@ -18,11 +18,11 @@ import otjbench.bank_bigdec.Bank;
 import otjbench.bank_bigdec.Person;
 import otjbench.bank_bigdec.Transaction;
 
-@Fork(warmups = 1)
+@Fork(warmups = 1, value = 15)
 @BenchmarkMode(Mode.SingleShotTime)
 @State(Scope.Benchmark)
 public class BigDecBankBenchmark {
-	@Param("800")
+	@Param({"250", "500", "1000", "2000", "4000"})
 	int N;
 
 	BigDecimal nAsBigDecimal;

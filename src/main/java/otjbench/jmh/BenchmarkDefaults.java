@@ -6,8 +6,8 @@ import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Warmup;
 
-@Fork(1)
-@Warmup(iterations = 10)
+@Fork(2)
+@Warmup(iterations = 20)
 @Measurement(iterations = 10)
 @BenchmarkMode(Mode.AverageTime)
 public abstract class BenchmarkDefaults {

@@ -18,7 +18,7 @@ import otjbench.noop.NoopTeam;
 @State(Scope.Benchmark)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class BindingOpsBenchmark extends BenchmarkDefaults {
-    @Param({ "5" })
+    @Param({ "1" })
     int N;
 
     BaseType base;
